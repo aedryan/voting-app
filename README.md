@@ -1,16 +1,16 @@
-#Voting App
+# Voting App
 For freeCodeCamp
 
-##URLS
+## URLS
 https://www.freecodecamp.com/challenges/build-a-voting-app
 https://voting-app-aedryan.herokuapp.com
 
-##Build
+## Build
 `npm install`
 `brunch build --production`
 
-##Develop
+## Develop
 `brunch watch`
 
-##Run
+## Run
 `node server/js/server.js`

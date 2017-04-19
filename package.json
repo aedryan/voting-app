@@ -1,13 +1,16 @@
 {
-  "name": "voting",
+  "name": "voting-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "An app for people to vote with",
+  "main": "server/js/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/aedryan/voting-app"
+  },
+  "author": "Andrew Cox",
+  "license": "MIT",
   "dependencies": {
     "angular": "^1.6.4",
     "bootstrap": "^3.3.7",
