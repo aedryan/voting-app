@@ -12,6 +12,7 @@
   "author": "Andrew Cox",
   "license": "MIT",
   "dependencies": {
+    "compression": "^1.6.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.1.1",
@@ -28,7 +29,6 @@
     "babel-preset-react": "~6.22",
     "brunch": "^2.10.9",
     "clean-css-brunch": "^2.10.0",
-    "compression": "^1.6.2",
     "javascript-brunch": "^2.10.0",
     "less-brunch": "^2.10.0",
     "postcss-brunch": "^2.0",
