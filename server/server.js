@@ -2,10 +2,12 @@
 
   const path = require("path");
   const express = require('express');
+  const compress = require('compression');
   const app = express();
   const db = require("./database");
 
   app.set('port', (process.env.PORT || 5000));
+  app.use(compress());
   app.use('/favicon.ico', express.static("favicon.ico"));
   app.use(express.static('public/'));
 
