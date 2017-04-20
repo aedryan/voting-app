@@ -2,8 +2,8 @@ module.exports = {
   files: {
     javascripts: {
       joinTo: {
-        'app.js': /app\/js\//,
-        'libraries.js': /node_modules\//
+        'app.js': /app\//,
+        'libraries.js': /^(?!app)/
       }
     },
     stylesheets: {
@@ -35,7 +35,8 @@ module.exports = {
   },
   plugins: {
     babel: {
-      ignore: [/node_modules/]
+      ignore: [/node_modules/],
+      presets: ['latest', 'react']
     },
     postcss: {
       processors: [

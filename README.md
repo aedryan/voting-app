@@ -13,4 +13,4 @@ https://voting-app-aedryan.herokuapp.com
 `brunch watch`
 
 ## Run
-`node server/js/server.js`
+`node server/server.js`
