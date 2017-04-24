@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $.get('/db/user', (data) => {
       const loggedIn = typeof data === "object";
-      const username = data && data.facebook ? data.facebook.name : '';
-      const userID = data ? data._id : '';
+      const username = data ? data.name : '';
+      const userID = data ? data.id : '';
 
       ReactDOM.render(
         <div id='app'>

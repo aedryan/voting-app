@@ -56,7 +56,7 @@
                         console.error('Error finding user by ID.', req.user._id, err)
                         res.status(503).end();
                     } else if (user) {
-                        res.json(user.toJSON());
+                        res.json({name: user.facebook.name, id: user._id});
                     } else {
                         res.status(404).end();
                     }
