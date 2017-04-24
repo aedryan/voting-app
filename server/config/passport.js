@@ -21,7 +21,7 @@
     passport.use(new FacebookStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: 'http://localhost:5000/auth/facebook/callback'
+        callbackURL: 'https://voting-app-aedryan.herokuapp.com/auth/facebook/callback'
     },
     function(token, refreshToken, profile, done){
         process.nextTick(() => {
