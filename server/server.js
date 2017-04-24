@@ -1,23 +1,47 @@
 (function(){
 
-  const path = require("path");
-  const express = require('express');
-  const compress = require('compression');
-  const app = express();
-  const db = require("./database");
+	// Node modules
+	const express = require('express');
+	const compress = require('compression');
+	const cookieParser = require('cookie-parser');
+	const bodyParser = require('body-parser');
+	const session = require('express-session');
+	const mongoose = require('mongoose');
 
-  app.set('port', (process.env.PORT || 5000));
-  app.use(compress());
-  app.use('/favicon.ico', express.static("favicon.ico"));
-  app.use(express.static('public/'));
+	// My modules
+	const passport = require('./config/passport');
+	const pageRoutes = require("./routes/page-routes");
+	const authRoutes = require("./routes/auth-routes");
+	const dbRoutes = require("./routes/db-routes");
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
-  });
+	// Create server
+	const app = express();
 
-  // Start server
-  app.listen(app.get('port'), () => {
-    console.log("App is running", app.get('port'));
-  });
+	// Connect to db
+	mongoose.connect(process.env.MONGODB_URI);
+
+	// Set server setting
+	app.set('port', (process.env.PORT || 5000));
+
+	// Set server middleware
+	app.use(compress());
+	app.use(cookieParser());
+	app.use(bodyParser.urlencoded({extended: true}));
+	app.use(session({ secret: 'voting-booth', resave: true, saveUninitialized: true }));
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	// Set server static files
+	app.use('/favicon.ico', express.static("favicon.ico"));
+	app.use(express.static('public/'));
+	
+  	authRoutes(app, passport);
+	dbRoutes(app);
+	pageRoutes(app);
+
+  	// Start server
+  	app.listen(app.get('port'), () => {
+		console.log("App is running", app.get('port'));
+  	});
 
 })();

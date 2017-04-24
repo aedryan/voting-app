@@ -1,19 +1,34 @@
 import React from 'react';
-import { Router, Route, Redirect } from 'react-router';
+import { 
+    BrowserRouter as Router, 
+    Route, 
+    Redirect, 
+    Switch 
+} from 'react-router-dom';
 
-import Home from 'components/home/index';
-import Poll from 'components/poll/index';
-import Profile from 'components/profile/index';
+import Home from 'components/home';
+import Poll from 'components/poll';
+import NewPoll from 'components/new-poll';
+import MyPolls from 'components/my-polls';
+import NotFound from 'components/404';
 
 const Routes = (props) => (
     <Router {...props} >
-        <div>
-            <Route exact path='/' render={() => (
-                <Redirect to='/home'/>
-            )}/>
-            <Route path='/home' component={Home} />
-            <Route path='/poll' component={Poll} />
-            <Route path='/profile' component={Profile} />
+        <div className="main-content">
+            <Switch>
+                <Route exact path='/' render={() => (
+                    <Redirect to='/home'/>
+                )}/>
+                <Route exact path='/home' render={() => (
+                    <Home loggedIn={props.loggedIn}/>
+                )} />
+                <Route path='/poll' render={() => (
+                    <Poll loggedIn={props.loggedIn} userID={props.userID} />
+                )} />
+                <Route exact path='/newpoll' component={NewPoll} />
+                <Route exact path='/mypolls' component={MyPolls} />
+                <Route path='*' component={NotFound} />
+            </Switch>
         </div>
     </Router>
 )

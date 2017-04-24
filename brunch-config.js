@@ -8,7 +8,7 @@ module.exports = {
     },
     stylesheets: {
       joinTo: {
-        'app.css': /app\/css\/|bootstrap.css/
+        'app.css': /app\/.+\.less|bootstrap.css/
       }
     },
     templates: {

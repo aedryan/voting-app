@@ -1,7 +1,7 @@
 import React from 'react';
 import PollList from 'components/poll-list';
 
-export default class Home extends React.Component {
+export default class MyPolls extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,7 +10,7 @@ export default class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		$.get('/db/polls', (data) => {
+		$.get('/db/polls/user', (data) => {
 			this.setState({
 				polls: data
 			});
@@ -19,8 +19,8 @@ export default class Home extends React.Component {
 
 	render() {
 		return (
-			<div id="home">
-				<h2>All Polls</h2>
+			<div id="my-polls">
+				<h2>My Polls</h2>
 				<PollList polls={this.state.polls} />
 			</div>
 		);
