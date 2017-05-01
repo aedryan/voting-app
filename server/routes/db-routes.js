@@ -68,10 +68,10 @@
         
         // Creates a new poll
         app.post('/db/poll/', (req, res) => {
-            if (req.isAuthenticated()) {
+            if (req.isAuthenticated() && req.body.name.length > 0 && req.body.options.length > 0 && Array.isArray(req.body.options)) {
                 const newPoll = new Poll();
 
-                newPoll.name = req.body.name;
+                newPoll.name = String(req.body.name);
                 newPoll.options = req.body.options;
                 newPoll.created = req.user._id;
                 newPoll.votes = [];

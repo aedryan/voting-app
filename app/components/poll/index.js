@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteModal from 'components/poll/deleteModal';
+import VotePieChart from 'components/poll/votePieChart';
 
 export default class Poll extends React.Component {
     constructor(props) {
@@ -233,9 +234,12 @@ export default class Poll extends React.Component {
 
 	render() {        
 		return (
-			<div id="poll" className='well'>
-                {this.showBanner()}
-                {this.showPollData()}
+			<div id="poll">
+                <div className='well'>
+                    {this.showBanner()}
+                    {this.showPollData()}
+                </div>
+                <VotePieChart poll={this.state.poll} width='250' height='250' />
             </div>
 		);
 	}
