@@ -88,12 +88,20 @@ export default class VotePieChart extends React.Component {
 		chart.append('path')
 			.attr('d', this.arc)
 			.attr('fill', (d) => { return this.state.color(d.data.name); });
-		
-		chart.append('text')
-			.attr("transform", (d) => { return "translate(" + this.label.centroid(d) + ")"; })
-			.attr("dy", "0.35em")
-			.attr('class','slice-text')
-			.text((d) => { return options[d.data.name]; });
+	}
+
+	getColorLegend() {
+		const domain = this.state.color.domain();
+		const legends = this.state.color.range().map((color, i) => 
+			<div className='legend-item' key={'legend-' + i}>
+				<div className='legend-color' style={{backgroundColor: color}}></div>
+				<div className='legend-name'>{this.state.poll.options[domain[i]]}</div>
+			</div>
+		);
+
+		return (
+			<div className='legend-container'>{legends}</div>
+		)
 	}
     
 	render() {
@@ -105,6 +113,7 @@ export default class VotePieChart extends React.Component {
 			<div>
 				<div>{!this.state.poll.votes.length ? 'No votes yet' : ''}</div>
 				<div ref='svgcontainer'></div>
+				{this.getColorLegend()}
 			</div>
 		);
 	}
